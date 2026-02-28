@@ -1,43 +1,48 @@
 # React + TypeScript + Redux Toolkit + RTK Query + Tailwind CSS Starter
 
-A production‑ready starter template for modern React applications. It comes pre‑configured with a robust stack, authentication flow, role‑based routing, dark mode, reusable components, and utility functions – all written in TypeScript.
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+[![React](https://img.shields.io/badge/React-19.2.4-61DAFB?logo=react&logoColor=white)](https://react.dev)
+[![Vite](https://img.shields.io/badge/Vite-8.0.0--beta.16-646CFF?logo=vite&logoColor=white)](https://vite.dev)
+[![Tailwind CSS](https://img.shields.io/badge/Tailwind%20CSS-4.2.1-38B2AC?logo=tailwindcss&logoColor=white)](https://tailwindcss.com)
+
+A production-ready starter template for modern React applications. It comes pre-configured with a robust stack, authentication flow, role-based routing, dark mode, reusable components, and utility functions – all written in TypeScript.
 
 ---
 
 ## Features
 
-- ⚡ **Vite** – Fast build tool and development server.
-- 🧠 **Redux Toolkit** – State management with slices and RTK Query.
-- 🔐 **Authentication** – Login, register, logout with token persistence (redux‑persist + cookies + localStorage).
-- 🚦 **Routing** – React Router v6 with public, private, and role‑based routes (admin/user).
-- 🎨 **Tailwind CSS** – Utility‑first styling with dark mode support.
-- 🌗 **Theme Toggle** – Dark/light mode with persistent preference.
-- 📦 **Reusable Components** – Button, Input, Modal, Spinner, Timer, Breadcrumbs, Sidebar.
-- 🛠 **Utilities** – Debounce, throttle, date formatting (date‑fns), Zod validation schemas.
-- 📁 **Scalable Folder Structure** – Clear separation of concerns.
-- 🔧 **Path Alias** – Use `@/` for clean imports.
+- ⚡ **Vite** – Blazing-fast build tool and development server.
+- 🧠 **Redux Toolkit** – Efficient state management with slices and RTK Query for data fetching/caching.
+- 🔐 **Authentication** – Login, register, logout with token persistence (redux-persist + cookies + localStorage).
+- 🚦 **Routing** – React Router v7 with public, private, and role-based routes (admin/user).
+- 🎨 **Tailwind CSS v4** – Utility-first styling with native dark mode support (no PostCSS config needed in Vite).
+- 🌗 **Theme Toggle** – Dark/light mode with persistent user preference.
+- 📦 **Reusable Components** – Button, Input, Modal, Spinner, Timer, Breadcrumbs, Sidebar, ThemeToggle.
+- 🛠 **Utilities** – Throttle, debounce, date formatting (date-fns), Zod validation schemas.
+- 📁 **Scalable Folder Structure** – Feature-based organization.
+- 🔧 **Path Alias** – `@/` for clean imports (e.g. `@/components/ui/Button`).
 
 ---
 
-## Tech Stack
+## Tech Stack (Latest Versions as of Feb 2026)
 
-- **React** 18
-- **TypeScript**
-- **Vite**
-- **Redux Toolkit** (with RTK Query)
-- **React Router** v6
-- **Tailwind CSS** + `class` dark mode
+- **React** 19.2.4
+- **TypeScript** (latest stable)
+- **Vite** 8.0.0-beta.16 (or stable 7.3.1)
+- **Redux Toolkit** 2.11.2 (with RTK Query)
+- **React Router** 7.13.1
+- **Tailwind CSS** 4.2.1 + class-based dark mode
 - **redux-persist** – Persist Redux state
 - **js-cookie** – Manage tokens in cookies
-- **React Hook Form** + **Zod** – Form handling & validation
-- **date-fns** – Date utilities
+- **React Hook Form** 7.71.2 + **Zod** 4.3.6 – Form handling & validation
+- **date-fns** 4.1.0 – Date utilities
 - **Headless UI** – Accessible UI primitives (used in Modal)
 
 ---
 
 ## Prerequisites
 
-- Node.js 18+ and npm/yarn/pnpm
+- Node.js ≥20 (18+ works, but 20+ recommended for best compatibility)
 
 ---
 
@@ -47,8 +52,8 @@ A production‑ready starter template for modern React applications. It comes pr
 
 ```
 bash
-git clone https://github.com/your-username/your-repo-name.git
-cd your-repo-name
+git clone https://github.com/your-username/react-redux-rtk-starter.git
+cd react-redux-rtk-starter
 ```
 
 ### 2. Install dependencies
@@ -56,20 +61,20 @@ cd your-repo-name
 ```
 bash
 npm install
-# or
-yarn install
+# or pnpm install / yarn install
 ```
 
 ### 3. Set up environment variables
 
-Create a `.env` file in the root:
+Create a `.env` file in the root (or use `.env.local` for dev-only):
 
 ```
 env
+# Only VITE_* variables are exposed to the client
 VITE_API_BASE_URL=https://your-api.com/api/v1
 ```
 
-Replace with your actual API base URL.
+Replace with your actual API base URL. Never commit real secrets.
 
 ### 4. Start the development server
 
@@ -88,41 +93,41 @@ Open [http://localhost:5173](http://localhost:5173) to view it in the browser.
 src/
 ├── components/           # Reusable UI and layout components
 │   ├── layout/           # Layout wrappers (Layout, DashboardLayout, Navbar, Footer)
-│   ├── ui/               # Dumb UI components (Button, Input, Modal, etc.)
+│   ├── ui/               # Atomic UI components (Button, Input, Modal, Spinner, etc.)
 │   ├── PrivateRoute.tsx
 │   ├── PublicRoute.tsx
 │   └── RoleBasedRoute.tsx
-├── contexts/             # React context (ThemeContext)
-├── features/             # Feature-based modules
+├── contexts/             # React contexts (ThemeContext)
+├── features/             # Feature slices & pages
 │   ├── admin/            # Admin dashboard
-│   ├── auth/             # Auth forms (LoginForm, RegisterForm)
-│   ├── timer/            # Example timer page
+│   ├── auth/             # Auth forms & logic
+│   ├── timer/            # Example timer feature
 │   └── user/             # User dashboard
-├── hooks/                 # Custom hooks (useDebounce, useThrottle, reduxHooks)
-├── redux/                 # Redux store, slices, APIs, types
-│   ├── hooks/            # baseApi (RTK Query)
-│   ├── features/
-│   │   └── auth/         # authSlice and authApi
-│   ├── types/            # TypeScript types for auth
-│   └── store.ts          # Redux store configuration with persist
+├── hooks/                # Custom hooks (useThrottle, useDebounce, redux hooks)
+├── redux/                # Redux setup
+│   ├── api/              # baseApi (RTK Query) + endpoint injections
+│   ├── features/         # slices (authSlice, etc.)
+│   ├── hooks/            # Typed useAppDispatch / useAppSelector
+│   └── store.ts          # Store with persist & middleware
 ├── routes/               # Centralized route definitions
-├── utils/                # Helper functions (dateUtils, validationSchemas)
-├── App.tsx               # Minimal app (optional with RouterProvider)
-├── main.tsx              # Entry point (Provider, PersistGate, ThemeProvider)
-├── index.css             # Tailwind directives
-└── vite-env.d.ts         # Vite types
+├── utils/                # Helpers (dateUtils, validationSchemas)
+├── App.tsx               # Root component with RouterProvider
+├── main.tsx              # Entry: Providers (Redux, PersistGate, ThemeProvider)
+├── index.css             # Tailwind base import
+└── vite-env.d.ts         # Vite env types
 ```
 
 ---
 
 ## Available Scripts
 
-| Script            | Description                      |
-| ----------------- | -------------------------------- |
-| `npm run dev`     | Start development server (Vite)  |
-| `npm run build`   | Build for production             |
-| `npm run preview` | Preview production build locally |
-| `npm run lint`    | Run ESLint                       |
+| Script            | Description                                 |
+| ----------------- | ------------------------------------------- |
+| `npm run dev`     | Start dev server (Vite + HMR)               |
+| `npm run build`   | Build for production                        |
+| `npm run preview` | Preview production build locally            |
+| `npm run lint`    | Run ESLint                                  |
+| `npm run test`    | Run Vitest unit/component tests (add setup) |
 
 ---
 
@@ -130,47 +135,40 @@ src/
 
 ### Redux Store with Persistence
 
-The store is configured in `src/redux/store.ts` with:
+Configured in `src/redux/store.ts` with:
 
-- `baseApi` – RTK Query slice for API calls.
-- `auth` slice – persisted using `redux-persist` (saves `token` and `user` in localStorage).
-- Middleware includes `baseApi.middleware` and custom serializable check for redux‑persist actions.
+- `baseApi` – RTK Query for API calls.
+- `auth` slice – persisted via `redux-persist`.
+- Token auto-injected via `prepareHeaders`.
 
 ### Authentication Flow
 
-- **Login/Register** – Mutations are defined in `authApi.ts`. On success, `extraReducers` in `authSlice` update the state, set cookies (`token`, `refreshToken`), and store the user in localStorage.
-- **Logout** – `logOut` action clears state, cookies, and localStorage.
-- **Token injection** – `baseApi` automatically adds the token from state to request headers.
-- **Route protection** – `PrivateRoute`, `PublicRoute`, and `RoleBasedRoute` guard access based on authentication and user role.
+- Mutations in `authApi.ts` → update state & set cookies on success.
+- Logout clears everything.
+- Protected routes via `PrivateRoute` / `RoleBasedRoute`.
 
 ### Routing
 
-Routes are defined in `src/routes/index.tsx` using `createBrowserRouter`. They are nested under `Layout` (for public pages) and `DashboardLayout` (for authenticated pages). Role‑based access is enforced with `<RoleBasedRoute allowedRoles={[...]}>`.
+Defined in `src/routes/index.tsx` using `createBrowserRouter` (React Router v7). Nested layouts + role guards.
 
 ### Theme (Dark/Light Mode)
 
-- `ThemeContext` provides `theme` and `toggleTheme`.
-- Tailwind’s `darkMode: 'class'` is enabled. The `dark` class is toggled on the `<html>` element.
-- Use `dark:` variants in your classes.
+`ThemeContext` toggles `dark` class on `<html>`. Use `dark:` prefixes in Tailwind classes.
 
 ### Utility Functions & Hooks
 
-- **`useDebounce`** / **`useThrottle`** – Custom hooks for performance.
-- **`dateUtils`** – Wrappers around date‑fns (`formatDate`, `timeAgo`, `daysUntil`).
-- **`validationSchemas`** – Centralized Zod schemas (e.g., `loginSchema`).
+- `useThrottle` / `useDebounce`
+- `dateUtils` wrappers for date-fns
+- Zod schemas in `utils/validationSchemas.ts`
 
 ### Reusable Components
 
-All UI components are in `src/components/ui/`:
+In `src/components/ui/`:
 
-- `Button` – Supports variants, loading state.
-- `Input` – With label, error message, and react‑hook‑form integration.
-- `Modal` – Using Headless UI.
-- `Spinner` – Loading indicator.
-- `Timer` – Countdown timer with controls.
-- `Breadcrumbs` – Auto‑generated from current route.
-- `Sidebar` – Collapsible, role‑based navigation.
-- `ThemeToggle` – Dark/light mode switcher.
+- `Button` (variants, loading)
+- `Input` (errors, RHF integration)
+- `Modal` (Headless UI)
+- `Spinner`, `Timer`, `Breadcrumbs`, `Sidebar`, `ThemeToggle`
 
 ---
 
@@ -178,18 +176,16 @@ All UI components are in `src/components/ui/`:
 
 ### Adding a New Feature
 
-1. Create a folder under `src/features/` (e.g., `profile`).
-2. Add Redux slice (if needed) in `src/redux/features/profile/`.
-3. Add RTK Query endpoints in a separate file (e.g., `profileApi.ts`) and inject into `baseApi`.
-4. Create components (e.g., `ProfilePage.tsx`).
-5. Define routes in `src/routes/index.tsx` (add to appropriate role‑based group).
+1. Create folder in `src/features/` (e.g. `profile`).
+2. Add slice + API endpoints if needed.
+3. Build components/pages.
+4. Add route in `src/routes/index.tsx`.
 
-### Using RTK Query
+### RTK Query Example
 
-Example: calling a protected endpoint
-
-```tsx
-import { useGetProfileQuery } from "@/redux/features/profile/profileApi";
+```
+tsx
+import { useGetProfileQuery } from "@/redux/api/profileApi";
 
 const Profile = () => {
   const { data, isLoading } = useGetProfileQuery();
@@ -198,9 +194,13 @@ const Profile = () => {
 };
 ```
 
-### Form Handling with React Hook Form + Zod
+### Form with React Hook Form + Zod
 
-```tsx
+```
+tsx
+import { z } from "zod";
+import { zodResolver } from "@hookform/resolvers/zod";
+
 const schema = z.object({ email: z.string().email() });
 type FormData = z.infer<typeof schema>;
 
@@ -209,9 +209,10 @@ const { register, handleSubmit } = useForm<FormData>({
 });
 ```
 
-### Dark Mode in Components
+### Dark Mode Example
 
-```tsx
+```
+tsx
 <div className="bg-white dark:bg-gray-800 text-black dark:text-white">
   Content
 </div>
@@ -221,40 +222,52 @@ const { register, handleSubmit } = useForm<FormData>({
 
 ## Deployment
 
-1. Build the project:
-   ```bash
-   npm run build
-   ```
-2. The output will be in the `dist/` folder. Deploy its contents to any static hosting service (Netlify, Vercel, AWS S3, etc.).
+```
+bash
+npm run build
+```
 
-Make sure to set the environment variables on your hosting platform (e.g., `VITE_API_BASE_URL`).
+Deploy `dist/` to Vercel, Netlify, Cloudflare Pages, etc. Set `VITE_API_BASE_URL` in hosting env vars.
+
+---
+
+## Testing (Recommended Setup)
+
+Add Vitest + React Testing Library + MSW for mocking RTK Query:
+
+```
+bash
+npm install -D vitest @testing-library/react msw
+```
+
+Run: `npm run test`
 
 ---
 
 ## Contributing
 
-Contributions are welcome! Please follow these steps:
-
-1. Fork the repository.
-2. Create a feature branch (`git checkout -b feature/amazing-feature`).
-3. Commit your changes (`git commit -m 'Add some amazing feature'`).
-4. Push to the branch (`git push origin feature/amazing-feature`).
-5. Open a Pull Request.
+1. Fork the repo.
+2. Create feature branch: `git checkout -b feature/amazing-thing`
+3. Commit: `git commit -m 'Add amazing thing'`
+4. Push & open PR.
 
 ---
 
 ## License
 
-This project is licensed under the MIT License – see the [LICENSE](LICENSE) file for details.
+MIT License – see [LICENSE](LICENSE).
 
 ---
 
 ## Acknowledgements
 
-- [Vite](https://vitejs.dev/)
+- [Vite](https://vite.dev/)
 - [Redux Toolkit](https://redux-toolkit.js.org/)
 - [Tailwind CSS](https://tailwindcss.com/)
 - [React Router](https://reactrouter.com/)
-- [Headless UI](https://headlessui.com/)
-- [date-fns](https://date-fns.org/)
 - [React Hook Form](https://react-hook-form.com/)
+- [Zod](https://zod.dev/)
+- [date-fns](https://date-fns.org/)
+- [Headless UI](https://headlessui.com/)
+
+Happy coding! 🚀
